@@ -1,8 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
+import UseScroll from './UseScroll'
+import { motion } from "framer-motion"
+import { skillsBarAnimation } from "animation"
 
 const Skills = () => {
+  const [element, controls] = UseScroll()
   const skillsData = [
     {
       name: "Facial",
@@ -26,7 +30,7 @@ const Skills = () => {
     },
   ]
   return (
-	<Section id='skills'>
+	<Section id='skills' ref={element}>
     <Title value="skills" />
     <div className="skills__title">
       <p>Our Skills</p>
@@ -37,13 +41,21 @@ const Skills = () => {
         {
           skillsData.map(({name, amount}) => {
             return (
-              <div className="skills__bars__bar" key={name}>
+              <motion.div className="skills__bars__bar" key={name}
+                variants={skillsBarAnimation}
+                animate={controls}
+                transition={{
+                  delay: 0.03,
+                  type: "tween",
+                  duration: 0.8,
+                }}
+              >
                 <div className="container">
                   <progress value={amount} max="100" />
                   <span>{name}</span>
                 </div>
                 <h3>{amount}%</h3>
-              </div>
+              </motion.div>
             )
           })
         }

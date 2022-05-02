@@ -3,8 +3,12 @@ import styled from 'styled-components'
 import play from 'assets/play.png'
 import home from 'assets/home.png'
 import Title from './Title'
+import { motion } from "framer-motion";
+import { blogsAnimation } from "animation"
+import UseScroll from './UseScroll'
 
 const Blog = () => {
+  const [element, controls] = UseScroll()
   const blogsData = [
     {
       title:"PARLOUR JOURNAL",
@@ -23,25 +27,33 @@ const Blog = () => {
     }
   ]
   return (
-	<Section id='blog'>
+	<Section id='blog' ref={element}>
     <Title value="Blog" />
     <div className="blogs">
       {blogsData.map(({title, type, description}) => {
         return (
-          <div className="blog">
+          <motion.div className="blog"
+            variants={blogsAnimation}
+            animate={controls}
+            transition={{
+              delay: 0.03,
+              type: "tween",
+              duration: 0.8,
+            }}
+          >
             <div className="image"></div>
             <div className="title">
               <h3>{title}</h3>
             </div>
             <span className='type'>{type}</span>
-            <div className="discription">
+            <div className="description">
               <p>{description}</p>
             </div>
             <div className="more">
               <img src={play} alt="Play" />
               <span>Read More</span>
             </div>
-          </div>
+          </motion.div>
         )
       })}
     </div>
@@ -81,7 +93,7 @@ const Section = styled.section`
         font-weight: bolder;
         text-transform: uppercase;
       }
-      .discription {
+      .description {
         height: 10rem;
         color: var(--primary-color);
       }

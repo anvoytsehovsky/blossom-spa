@@ -11,10 +11,11 @@ import Testimonials from "components/Testimonials"
 import Skills from "components/Skills"
 import Contact from "components/Contact"
 import Footer from "components/Footer"
+import { motion } from 'framer-motion'
 
 function App() {
   return (
-    <div>
+    <motion.div initial="hidden" animate="show">
       <ScrollToTop />
       <Home />
       <Services />
@@ -27,7 +28,7 @@ function App() {
       <Skills />
       <Contact />
       <Footer />
-    </div>
+    </motion.div>
   )
 }
 

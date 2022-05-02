@@ -3,13 +3,18 @@ import styled from 'styled-components'
 import home from 'assets/home.png'
 import play from 'assets/play.png'
 import Navbar from './Navbar'
+import { motion } from 'framer-motion'
+import { homeAnimation, homeInfoAnimation } from "animation"
 
 
 const Home = () => {
   return (
 	<Section id='home'>
     <Navbar />
-    <div className="home">
+    <motion.div className="home"
+      variants={homeAnimation}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+    >
       <div className="content">
         <div className="title">
           <h1>Blossoms Parlour</h1>
@@ -23,9 +28,12 @@ const Home = () => {
         </div>
         <img src={play} alt="Play Button" />
       </div>
-    </div>
+    </motion.div>
 
-    <div className="info">
+    <motion.div className="info"
+      variants={homeInfoAnimation}  
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+    >
       <div className="grid">
         <div className="col">
           <strong>Parlour</strong>
@@ -55,7 +63,7 @@ const Home = () => {
           <p>08:00 to 09:00</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   </Section>
   )
 }

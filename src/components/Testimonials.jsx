@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import loadmore from "assets/loadmore.png"
+import { motion } from "framer-motion"
+import { testimonialsAnimations } from "animation"
+import UseScroll from './UseScroll'
 
 const Testimonials = () => {
+  const [element, controls] = UseScroll()
   const [selected, setSelected] = useState(0)
   const testimonials = [
     {
@@ -25,9 +29,17 @@ const Testimonials = () => {
     },
   ]
   return (
-	<Section>
+	<Section ref={element}>
     <div className="container">
-      <div className="testimonials">
+      <motion.div className="testimonials"
+        variants={testimonialsAnimations}
+        animate={controls}
+        transition={{
+          delay: 0.03,
+          type: "tween",
+          duration: 0.8,
+        }}
+      >
         {
           testimonials.map(({designation, name, review}, index) => {
             return (
@@ -48,12 +60,20 @@ const Testimonials = () => {
             )
           })
         }
-      </div>
-      <div className="controls">
+      </motion.div>
+      <motion.div className="controls"
+        variants={testimonialsAnimations}
+        animate={controls}
+        transition={{
+          delay: 0.03,
+          type: "tween",
+          duration: 0.8,
+        }}
+      >
         <button className={selected === 0 ? "active" : ""} onClick={() => {setSelected(0)}}></button>
         <button className={selected === 1 ? "active" : ""} onClick={() => {setSelected(1)}}></button>
         <button className={selected === 2 ? "active" : ""} onClick={() => {setSelected(2)}}></button>
-      </div>
+      </motion.div>
     </div>
   </Section>
   )
