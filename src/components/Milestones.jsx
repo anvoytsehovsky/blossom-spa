@@ -91,13 +91,25 @@ const Section = styled.section`
       }
       span {
         text-transform: uppercase;
-        color: #ffffc7;
+        color: #ffffffc7;
       }
       img {
         height: 6rem;
       }
     }
   }
+  @media screen and (min-width: 280px) and (max-width: 1080px) { 
+  padding: 5rem 2rem;
+  min-height: 100ch;
+  height: 100%;
+  .background {
+    display: none;
+  }
+  .milestones {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+}
 `
 
 export default Milestones

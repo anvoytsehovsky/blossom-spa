@@ -93,7 +93,7 @@ const Section = styled.section`
       .subTitle {
         p {
           width: 70%;
-          margin-bottom: 5.3rem;
+          margin-bottom: 2rem;
         }
       }
     }
@@ -109,6 +109,27 @@ const Section = styled.section`
       grid-template-columns: repeat(3, 1fr);
       gap: 4rem;
       color: #fff;
+    }
+  }
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    .home {
+      .content {
+        padding-left: 2rem;
+        width: 100%;
+        margin-bottom: 2rem;
+        .title {
+          h1 {
+            font-size: 4rem;
+            line-height: 4rem;
+          }
+        }
+      }
+    }
+    .info {
+      position: initial;
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   }
 `

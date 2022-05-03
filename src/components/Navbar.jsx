@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from 'assets/logo.png'
-import { GiHamBurgerMenu } from 'react-icons/gi'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { MdClose } from 'react-icons/md'
 import { motion } from "framer-motion"
 import { navAnimation } from "animation"
@@ -22,9 +22,20 @@ const Navbar = () => {
       <a href="#" className='brand'>
         <img src={logo} alt='logo' />
       </a>
-      <div className="toggle"></div>
+      <div className="toggle">
+        {isNavOpen ? (
+          <MdClose onClick={ () => setIsNavOpen(false)} />
+        ) : (
+          <GiHamburgerMenu
+            onClick={ (e) => {
+              e.stopPropagation();
+              setIsNavOpen(true);
+            }}
+            />
+        )}
+      </div>
     </div>
-    <div className="links">
+    <div className={`links ${isNavOpen ? "show" : ""}`}>
       <ul>
         <li className="active">
           <a href="#home">Home</a>
@@ -69,7 +80,7 @@ const Nav = styled(motion.nav)`
       gap: 3rem;
       .active {
         a {
-          border-bottom: 0.2px solid var(--secondary-color);
+          border-bottom: 0.2rem solid var(--secondary-color);
         }
       }
       li {
@@ -80,6 +91,43 @@ const Nav = styled(motion.nav)`
           font-size: 0.9rem;
           text-transform: uppercase;
         }
+      }
+    }
+  }
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    margin: 0;
+    position: relative;
+    .brand__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      .toggle {
+        padding-right: 1rem;
+        display: block;
+        z-index: 1;
+      }
+    }
+    .show {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .links {
+      position: absolute;
+      overflow-x: hidden;
+      top: 0;
+      right: 0;
+      width: ${({ state }) => (state ? "100%" : "0%")};
+      height: 100vh;
+      background-color: var(--secondary-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s ease-in-out;
+      ul {
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+        justify-content: center;
       }
     }
   }

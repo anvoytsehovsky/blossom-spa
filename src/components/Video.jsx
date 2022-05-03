@@ -42,6 +42,16 @@ const Section = styled.section`
   .video {
     z-index: 10;
   }
+  @media screen and (min-width: 280px) and (max-width: 1080px) { 
+  height: 100%;
+  padding: 6rem 2rem;
+  .video {
+    iframe {
+      width: 80vw;
+      height: 10rem;
+    }
+  }
+}
 `
 
 export default Video
